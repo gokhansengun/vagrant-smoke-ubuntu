@@ -29,8 +29,8 @@ Vagrant.configure(2) do |config|
 end
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "geerlingguy/centos7"
-  config.vm.box_version = "1.2.21"
+  config.vm.box = "geerlingguy/ubuntu2004"
+  config.vm.box_version = "1.0.1"
 
   config.virtualhostsupdater.aliases = aliases
 
@@ -46,9 +46,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", inline: <<-SHELL
-    yum install -y epel-release
-    yum install -y nginx
-    systemctl enable nginx
-    systemctl start nginx
+    apt-get update -y
+    apt-get install -y nginx
   SHELL
 end
